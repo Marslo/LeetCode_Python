@@ -1,6 +1,98 @@
 # leetcode_python
 My Leetcode source code. Python version.
 
+
+## Pythonic
+
+### Got from [here](https://www.quora.com/What-are-some-examples-of-beautiful-Pythonic-code)
+--
+
+		def unzip(tuples):
+				if tuples:
+						return [tuple(t[i] for t in tuples) for i, _ in enumerate(tuples[0])]
+				else:
+						return []
+
+--
+
+		long_string = "This is a very long string"
+		if "long" in long_string:
+				print("Match found")
+
+--
+
+		>>> from collections import Counter
+		>>> fruits = ['orange', 'banana', 'apple', 'orange', 'banana']
+		>>> Counter(fruits)
+		Counter({'orange': 2, 'banana': 2, 'apple': 1})
+
+
+--
+
+		x = ['a', 'b', 'c']
+
+		for index, item in enumerate(x):
+				print(index, item)
+
+--
+
+		# A.py
+
+		def filter_items(items):
+				for i in items:
+						if i < 10:
+								yield i
+
+
+		# B.py
+
+		from A import filter_items as A_filter_items
+
+		def filter_items(items):
+				for i in items:
+						if i <= 5:
+								yield i
+
+		def do_something(items):
+				x = A_filter_items(items)
+				y = filter_items(items)
+				return (x, y)
+
+--
+
+		def add(one, two):
+			return one + two
+
+		my_list = [1, 2]
+		x = add(*my_list)  # x = 3
+
+		my_dict = {"one": 1, "two": 2}
+		y = add(**my_dict) #y = 3
+
+--
+
+		>>> from itertools import zip_longest
+		>>> x = [1, 2, 3, 4]
+		>>> y = ['a', 'b', 'c']
+		>>> for i, j in zip_longest(x, y):
+		...     print(i, j)
+		...
+		1 a
+		2 b
+		3 c
+		4 None
+
+--
+
+		>>> my_dict = {key: value for key, value in zip_longest(x,y)}
+		>>> my_dict
+		{1: 'a', 2: 'b', 3: 'c', 4: None}
+
+--
+
+		word = #some word
+		is_palindrome = word.find(word[-1::-1])
+
 ## [PEP8 -- Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
 
 ----
