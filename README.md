@@ -3,7 +3,7 @@ My Leetcode source code. Python version.
 
 ## [PEP8 -- Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
 
-----==
+----
 ### Indentation
 
 ##### Yes:
@@ -84,7 +84,7 @@ OR
 	)
 
 
-----==
+----
 ### Maximum Line Length
 
 ##### Yes:
@@ -92,7 +92,7 @@ OR
 				 open('/path/to/some/file/being/written', 'w') as file_2:
 				file_2.write(file_1.read())
 
-----==
+----
 ### Should a Line break before or after a binary operator?
 ##### No: operators sit far away from their operands
 
@@ -182,6 +182,8 @@ Module level "dunder" names with two leading and two trailing underscores, such 
 
     spam(ham[1], {eggs: 2})
 
+--
+
 ##### No:
 
     if x == 4 : print x , y ; x , y = y , x
@@ -190,6 +192,7 @@ Module level "dunder" names with two leading and two trailing underscores, such 
 
     if x == 4; print x, y; x, y = y, x
 
+--
 
 ##### No:
 
@@ -206,6 +209,7 @@ Module level "dunder" names with two leading and two trailing underscores, such 
     ham[: upper_fn(x) : setp_fn(x)], ham[:: setp_fn(x)]
     ham[lower + offset : upper + offset]
 
+--
 
 ##### No:
 
@@ -215,6 +219,8 @@ Module level "dunder" names with two leading and two trailing underscores, such 
 
     spam(1)
 
+--
+
 ##### No:
 
     dct ['key'] = lst [index]
@@ -222,6 +228,8 @@ Module level "dunder" names with two leading and two trailing underscores, such 
 ##### Yes:
 
     dct['key'] = lst[index]
+
+--
 
 ##### No:
 
