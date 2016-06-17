@@ -247,19 +247,229 @@ Module level "dunder" names with two leading and two trailing underscores, such 
 ### Other Recommendations
 
 ##### No:
+
+		i=i+1
+		submitted +=1
+		x = x * 2 - 1
+		hypot2 = x * x + y * y
+		c = (a + b) * (a - b)
+
 ##### Yes:
 
-##### No:
-##### Yes:
+		i = i + 1
+		submitted += 1
+		x = x*2 - 1
+		hypot2 = x*x + y*y
+		c = (a+b) * (a-b)
+
+
+--
 
 ##### No:
+
+		def complex(real, imag = 0.0):
+				return magic(r = real, i = imag)
+
 ##### Yes:
 
-##### No:
-##### Yes:
+		def complex(real, imag=0.0):
+				return magic(r=real, i=imag)
+
+--
 
 ##### No:
+
+		def munge(input:AnyStr): ...
+		def munge()->PosInt: ...
+
 ##### Yes:
 
+		def munge(input: AnyStr): ...
+		def munge() -> AnyStr: ...
+
+--
+
 ##### No:
+
+		def munge(input: AnyStr=None): ...
+		def munge(input: AnyStr, limit = 1000): ...
+
 ##### Yes:
+
+		def munge(sep: AnyStr = None): ...
+		def munge(input: AnyStr, sep: AnyStr = None, limit=1000): ...
+
+--
+
+##### Rather no:
+
+		if foo == 'blah': do_blah_thing()
+		do_one(); do_two(); do_three()
+
+##### Yes:
+
+		if foo == 'blah':
+				do_blah_thing()
+		do_one()
+		do_two()
+		do_three()
+
+--
+
+##### Definitely No:
+
+		if foo == 'blah': do_blah_thing()
+		else: do_non_blah_thing()
+
+		try: something()
+		finally: cleanup()
+
+		do_one(); do_two(); do_three(long, argument,
+																 list, like, this)
+
+		if foo == 'blah': one(); two(); three()
+
+##### Yes:
+
+		if foo == 'blah': do_blah_thing()
+		for x in lst: total += x
+		while t < 10: t = delay()
+
+----
+### Documentation Strings
+
+##### Yes:
+
+		"""Return a foobang
+
+		Optional plotz says to frobnicate the bizbaz first.
+		"""
+
+----
+### Programming Recommendations
+
+--
+
+##### No:
+
+		if not foo is None:
+
+##### Yes:
+
+		if foo is not None:
+
+--
+
+##### No:
+
+		f = lambda x: 2*x
+
+##### Yes:
+
+		def f(x): return 2*x
+
+--
+
+##### No:
+
+		try:
+				# Too broad!
+        return handle_value(collection[key])
+    expect KeyError:
+        # Will also catch KeyError raised by handle_value()
+        return key_not_found(key)
+
+##### Yes:
+
+    try:
+        value = collection[key]
+    except KeyError:
+        return key_not_found(key)
+    else:
+        return handle_value(value)
+
+--
+
+##### No:
+
+    with conn:
+        do_stuff_in_transaction(conn)
+
+##### Yes:
+
+    with conn.begin_transaction():
+        do_stuff_in_transaction(conn)
+
+--
+
+##### No:
+
+    def foo(x):
+        fi x >= 0:
+            return math.sqrt(x)
+
+    def bar(x):
+        if x < 0:
+            return
+        return math.sqrt(x)
+
+##### Yes:
+
+    def foo(x):
+        if x >= 0:
+            return math.sqrt(x)
+        else:
+            return None
+
+    def bar(x):
+        if x < 0:
+            return None
+        return math.sqrt(x)
+
+--
+
+##### No:
+
+    if foo[:3] == 'bar':
+
+##### Yes:
+
+    if foo.startwith('bar'):
+
+--
+
+##### No:
+
+    if type(obj) is type(1):
+
+##### Yes:
+
+    if isinstance(obj, int):
+
+--
+
+##### No:
+
+    if len(seq):
+    if not len(seq):
+
+##### Yes:
+
+    if not seq:
+    if seq:
+
+--
+
+##### No:
+
+		if greeting == True:
+
+
+##### Yes:
+
+		if greeting:
+
+
+##### Worse:
+
+		if greeting is True:
