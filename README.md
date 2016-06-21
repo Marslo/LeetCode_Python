@@ -7,7 +7,7 @@ My Leetcode source code. Python version.
 ### Got from [here](https://www.quora.com/What-are-some-examples-of-beautiful-Pythonic-code) and [here](http://www.pythontab.com/html/2015/pythonhexinbiancheng_1029/970.html)
 
 --
-##### 
+##### zip/unzip
 
 		def unzip(tuples):
 				if tuples:
@@ -16,14 +16,14 @@ My Leetcode source code. Python version.
 						return []
 
 --
-##### 
+##### in
 
 		long_string = "This is a very long string"
 		if "long" in long_string:
 				print("Match found")
 
 --
-##### 
+##### dict & counter
 
 		>>> from collections import Counter
 		>>> fruits = ['orange', 'banana', 'apple', 'orange', 'banana']
@@ -32,7 +32,7 @@ My Leetcode source code. Python version.
 
 
 --
-##### 
+##### enumerate
 
 		x = ['a', 'b', 'c']
 
@@ -40,7 +40,7 @@ My Leetcode source code. Python version.
 				print(index, item)
 
 --
-##### 
+##### import local module
 
 		# A.py
 
@@ -65,7 +65,7 @@ My Leetcode source code. Python version.
 				return (x, y)
 
 --
-##### 
+##### **args & **kwargs
 
 		def add(one, two):
 			return one + two
@@ -77,7 +77,7 @@ My Leetcode source code. Python version.
 		y = add(**my_dict) #y = 3
 
 --
-##### 
+##### itertools
 
 		>>> from itertools import zip_longest
 		>>> x = [1, 2, 3, 4]
@@ -91,14 +91,14 @@ My Leetcode source code. Python version.
 		4 None
 
 --
-##### 
+##### one-line python code
 
 		>>> my_dict = {key: value for key, value in zip_longest(x,y)}
 		>>> my_dict
 		{1: 'a', 2: 'b', 3: 'c', 4: None}
 
 --
-##### 
+##### slice
 
 		word = #some word
 		is_palindrome = word.find(word[-1::-1])
@@ -117,6 +117,202 @@ NP:
 		a = 3
 		b = 1
 		b >= 1 and b <= a and a < 10 #True
+
+--
+
+##### Boolean
+P:
+
+		name = 'Tim'
+		langs = ['AS3', 'Lua', 'C']
+		info = {'name': 'Tim', 'sex': 'Male', 'age':23 }
+
+		if name and langs and info:
+				print('All True!')  #All True!
+
+NP:
+
+		if name != '' and len(langs) > 0 and info != {}:
+				print('All True!') #All True!
+
+--
+
+##### Reverse
+P:
+
+		def reverse_str( s ):
+				return s[::-1]
+
+NP:
+
+		def reverse_str( s ):
+				t = ''
+				for x in xrange(len(s)-1,-1,-1):
+						t += s[x]
+				return t
+
+--
+
+##### Join in list
+P:
+
+		strList = ["Python", "is", "good"]
+
+		res =  ' '.join(strList) #Python is good
+
+NP:
+
+    res = ''
+    for s in strList:
+        res += s + ' '
+    #Python is good
+    #最后还有个多余空格
+
+--
+
+##### Sum & Max & Min & Time
+P:
+
+		numList = [1,2,3,4,5]
+		sum = sum(numList)  #sum = 15
+		maxNum = max(numList) #maxNum = 5
+		minNum = min(numList) #minNum = 1
+		from operator import mul
+		prod = reduce(mul, numList, 1) #prod = 120 默认值传1以防空列表报错
+
+NP:
+
+		sum = 0
+		maxNum = -float('inf')
+		minNum = float('inf')
+		prod = 1
+		for num in numList:
+				if num > maxNum:
+						maxNum = num
+				if num < minNum:
+						minNum = num
+				sum += num
+				prod *= num
+		# sum = 15 maxNum = 5 minNum = 1 prod = 120
+
+--
+
+##### List Comprehensions
+P:
+
+		l = [x*x for x in range(10) if x % 3 == 0]
+		# l = [0, 9, 36, 81]
+
+NP:
+
+		l = []
+		for x in range(10):
+				if x % 3 == 0:
+						l.append(x*x)
+		# l = [0, 9, 36, 81]
+
+--
+
+##### Default Dict
+P:
+
+		dic = {'name':'Tim', 'age':23}
+
+		dic['workage'] = dic.get('workage',0) + 1
+		# dic = {'age': 23, 'workage': 1, 'name': 'Tim'}
+
+NP:
+
+		if 'workage' in dic:
+				dic['workage'] += 1
+		else:
+				dic['workage'] = 1
+		# dic = {'age': 23, 'workage': 1, 'name': 'Tim'}
+
+--
+
+##### if...else...
+P:
+
+		for x in xrange(1,5):
+		    if x == 5:
+		        print 'find 5'
+		        break
+		else:
+		    print 'can not find 5!'
+		# can not find 5!
+
+NP:
+
+		find = False
+		for x in xrange(1,5):
+		    if x == 5:
+		        find = True
+		        print 'find 5'
+		        break
+		if not find:
+		    print 'can not find 5!'
+		# can not find 5!
+
+--
+
+##### Ternary Operator
+P:
+		a = 3
+
+		b = 2 if a > 2 else 1
+		# b = 2
+
+NP:
+
+		if a > 2:
+		    b = 2
+		else:
+		    b = 1
+		# b = 2
+
+--
+
+##### Enumerate
+P:
+
+		array = [1, 2, 3, 4, 5]
+
+		for i, e in enumerate(array,0):
+		    print i, e
+		#0 1
+		#1 2
+		#2 3
+		#3 4
+		#4 5
+
+NP:
+
+		for i in xrange(len(array)):
+		    print i, array[i]
+		#0 1
+		#1 2
+		#2 3
+		#3 4
+		#4 5
+
+--
+
+##### dict & zip
+P:
+
+		keys = ['Name', 'Sex', 'Age']
+		values = ['Tim', 'Male', 23]
+
+		dic = dict(zip(keys, values))
+		# {'Age': 23, 'Name': 'Tim', 'Sex': 'Male'}
+
+NP:
+
+		dic = {}
+		for i,e in enumerate(keys):
+		    dic[e] = values[i]
+		# {'Age': 23, 'Name': 'Tim', 'Sex': 'Male'}
 
 
 --------
@@ -725,9 +921,9 @@ equal to
 
 --
 
-		from __future__ import print_function 
+		from __future__ import print_function
 
-		mylist = ['foo', 'bar', 'some other value', 1,2,3,4]  
+		mylist = ['foo', 'bar', 'some other value', 1,2,3,4]
 		print(*mylist)
 
 ------
