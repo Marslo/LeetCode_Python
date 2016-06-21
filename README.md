@@ -2,16 +2,29 @@
 My Leetcode source code. Python version.
 
 
-## Hidden Features [Got from here](http://stackoverflow.com/questions/101268/hidden-features-of-python)
+## Hidden Features ([Got from here](http://stackoverflow.com/questions/101268/hidden-features-of-python))
+
+### Numbers:
+##### round
+
+		>>> str(round(1234.5678, -2))
+		'1200.0'
+		>>> str(round(1234.5678, 2))
+		'1234.57'
 
 
-##### In
+##### Integer base
 
-		>>> 'str' in 'string'
-		True
-		>>> 'no' in 'yes'
-		False
-		>>>
+		>>> int('10', 0)
+		10
+		>>> int('0x10', 0)
+		16
+		>>> int('010', 0)  # does not work on Python 3.x
+		8
+		>>> int('0o10', 0)  # Python >=2.6 and Python 3.x
+		8
+		>>> int('0b10', 0)  # Python >=2.6 and Python 3.x
+		2
 
 ##### In-place value swapping
 
@@ -24,6 +37,112 @@ My Leetcode source code. Python version.
 		>>> a, b
 		(5, 10)
 
+------
+
+### String:
+
+##### Multi-line Strings
+
+		>>> sql = "select * from some_table \
+		where id > 10"
+		>>> print sql
+		select * from some_table where id > 10
+
+--
+
+		>>> sql = """select * from some_table
+		where id > 10"""
+		>>> print sql
+		select * from some_table where id > 10
+
+--
+
+		>>> sql = ("select * from some_table " # <-- no comma, whitespace at end
+							 "where id > 10 "
+							 "order by name")
+		>>> print sql
+		select * from some_table where id > 10 order by name
+
+##### In
+
+		>>> 'str' in 'string'
+		True
+		>>> 'no' in 'yes'
+		False
+		>>>
+
+#####
+
+		''.join(list_of_strings)
+
+##### set
+
+		>>> a = set([1,2,3,4])
+		>>> b = set([3,4,5,6])
+		>>> a | b # Union
+		{1, 2, 3, 4, 5, 6}
+		>>> a & b # Intersection
+		{3, 4}
+		>>> a < b # Subset
+		False
+		>>> a - b # Difference
+		{1, 2}
+		>>> a ^ b # Symmetric Difference
+		{1, 2, 5, 6}
+
+##### Slice operators
+
+    a = [1,2,3,4,5]
+    >>> a[::2]  # iterate over the whole list in 2-increments
+    [1,3,5]
+
+--
+
+    >>> a[::-1]
+    [5,4,3,2,1]
+
+--
+
+    >>> a = range(10)
+    >>> a
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> a[:5] = [42]
+    >>> a
+    [42, 5, 6, 7, 8, 9]
+    >>> a[:1] = range(5)
+    >>> a
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> del a[::2]
+    >>> a
+    [1, 3, 5, 7, 9]
+    >>> a[::2] = a[::-2]
+    >>> a
+    [9, 3, 5, 7, 1]
+
+##### dict's constructor
+
+		>>> dict(foo=1, bar=2)
+		{'foo': 1, 'bar': 2}
+
+
+------
+
+### Args:
+
+##### Use _ instead of last printed item
+
+    >>> range(10)
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> _
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>>
+
+##### *args & **kwargs
+
+    >>> g = lambda *args, **kwargs: args[0], kwargs['thing']
+    >>> g(1, 2, 3, thing='stuff')
+    (1, 'stuff')
+
 ##### Function argument unpacking
 
 		def draw_point(x, y):
@@ -35,13 +154,30 @@ My Leetcode source code. Python version.
 		draw_point(*point_foo)
 		draw_point(**point_bar)
 
-##### Nested list
+------
 
-		[(i,j) for i in range(3) for j in range(i) ]
+### Mulit-operation combain
+
+##### Ternary operator
+
+    >>> 'ham' if True else 'spam'
+    'ham'
+    >>> 'ham' if False else 'spam'
+    'spam'
 
 --
 
-		((i,j) for i in range(4) for j in range(i) )
+    >>> True and 'ham' or 'spam'
+    'ham'
+    >>> False and 'ham' or 'spam'
+    'spam'
+
+--
+
+    >>> [] if True else 'spam'
+    []
+    >>> True and [] or 'spam'
+    'spam'
 
 ##### Conditional Assignment
 
@@ -63,6 +199,38 @@ My Leetcode source code. Python version.
 
 		[(x, y) for x in range(4) if x % 2 == 1 for y in range(4)]
 		[(1, 0), (1, 1), (1, 2), (1, 3), (3, 0), (3, 1), (3, 2), (3, 3)]
+
+
+
+------
+
+### List
+
+##### zip
+
+    a = [(1,2), (3,4), (5,6)]
+    zip(*a)
+    # [(1, 3, 5), (2, 4, 6)]
+
+--
+
+		>>> dict([ ('foo','bar'),('a',1),('b',2) ])
+		{'a': 1, 'b': 2, 'foo': 'bar'}
+
+		>>> names = ['Bob', 'Marie', 'Alice']
+		>>> ages = [23, 27, 36]
+		>>> dict(zip(names, ages))
+		{'Alice': 36, 'Bob': 23, 'Marie': 27}
+
+
+##### Nested list
+
+		[(i,j) for i in range(3) for j in range(i) ]
+
+--
+
+		((i,j) for i in range(4) for j in range(i) )
+
 
 ##### enumerate
 
@@ -98,7 +266,7 @@ My Leetcode source code. Python version.
 		(1, 4)
 		(1, 5)
 
-##### constructor
+##### iteration ([itertools](http://docs.python.org/library/itertools.html)) & constructor (yield)
 
 		>>> def g(n):
 		...     for i in range(n):
@@ -131,6 +299,46 @@ My Leetcode source code. Python version.
 		...     print i,",",
 		...
 		0 , 1 , 1 , 2 , 3 , 5 , 8 , 13 ,
+
+--
+
+		>>> i = (1,2,3,4,5,6,7,8,9,10) # or any iterable object
+		>>> iterators = [iter(i)] * 2
+		>>> iterators[0].next()
+		1
+		>>> iterators[1].next()
+		2
+		>>> iterators[0].next()
+		3
+
+--
+
+		def grouper(n, iterable, fillvalue=None):
+				"grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx"
+				args = [iter(iterable)] * n
+				return izip_longest(fillvalue=fillvalue, *args)
+
+--
+
+		>>> from itertools import *
+		>>> l = [[1, 2], [3, 4]]
+		>>> list(chain(*l))
+		[1, 2, 3, 4]
+
+##### Generate List
+
+		>>> from functools import partial
+		>>> bound_func = partial(range, 0, 10)
+		>>> bound_func()
+		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		>>> bound_func(2)
+		[0, 2, 4, 6, 8]
+
+
+
+------
+
+### Statement
 
 ##### for...else...
 
@@ -169,35 +377,9 @@ My Leetcode source code. Python version.
 		finally:
 			end_sketch()
 
+------
 
-##### set
-
-		>>> a = set([1,2,3,4])
-		>>> b = set([3,4,5,6])
-		>>> a | b # Union
-		{1, 2, 3, 4, 5, 6}
-		>>> a & b # Intersection
-		{3, 4}
-		>>> a < b # Subset
-		False
-		>>> a - b # Difference
-		{1, 2}
-		>>> a ^ b # Symmetric Difference
-		{1, 2, 5, 6}
-
-
-##### round
-
-		>>> str(round(1234.5678, -2))
-		'1200.0'
-		>>> str(round(1234.5678, 2))
-		'1234.57'
-
-##### zip
-
-    a = [(1,2), (3,4), (5,6)]
-    zip(*a)
-    # [(1, 3, 5), (2, 4, 6)]
+### Funcs:
 
 ##### dir
 
@@ -214,33 +396,6 @@ My Leetcode source code. Python version.
 				S.upper() -> string
 
 				Return a copy of the string S converted to uppercase.
-
-##### dict's constructor
-
-		>>> dict(foo=1, bar=2)
-		{'foo': 1, 'bar': 2}
-
-##### Multi-line Strings
-
-		>>> sql = "select * from some_table \
-		where id > 10"
-		>>> print sql
-		select * from some_table where id > 10
-
---
-
-		>>> sql = """select * from some_table
-		where id > 10"""
-		>>> print sql
-		select * from some_table where id > 10
-
---
-
-		>>> sql = ("select * from some_table " # <-- no comma, whitespace at end
-							 "where id > 10 "
-							 "order by name")
-		>>> print sql
-		select * from some_table where id > 10 order by name
 
 ##### Convenient Web-browser controller
 
@@ -275,15 +430,6 @@ My Leetcode source code. Python version.
 		>>> shared_var
 		'Set in main console'
 
-##### Generate List
-
-		>>> from functools import partial
-		>>> bound_func = partial(range, 0, 10)
-		>>> bound_func()
-		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-		>>> bound_func(2)
-		[0, 2, 4, 6, 8]
-
 ##### pretty print
 
 		>>> import pprint
@@ -297,6 +443,10 @@ My Leetcode source code. Python version.
 		 '/usr/local/lib/python1.5/sunos5',
 		 '/usr/local/lib/python1.5/sharedmodules',
 		 '/usr/local/lib/python1.5/tkinter']
+
+------
+
+### Class & Module
 
 ##### Creating new types
 
@@ -312,6 +462,38 @@ My Leetcode source code. Python version.
 		>>> n = NewType()
 		>>> n.x
 		"hello"
+
+##### Manipulating sys.modules
+
+		>>> import sys
+		>>> import ham
+		Traceback (most recent call last):
+			File "<stdin>", line 1, in <module>
+		ImportError: No module named ham
+
+		# Make the 'ham' module available -- as a non-module object even!
+		>>> sys.modules['ham'] = 'ham, eggs, saussages and spam.'
+		>>> import ham
+		>>> ham
+		'ham, eggs, saussages and spam.'
+
+		# Now remove it again.
+		>>> sys.modules['ham'] = None
+		>>> import ham
+		Traceback (most recent call last):
+
+--
+
+		>>> import os
+		# Stop future imports of 'os'.
+		>>> sys.modules['os'] = None
+		>>> import os
+		Traceback (most recent call last):
+			File "<stdin>", line 1, in <module>
+		ImportError: No module named os
+		# Our old imported module is still available.
+		>>> os
+		<module 'os' from '/usr/lib/python2.5/os.pyc'>
 
 ##### Be careful with mutable default arguments
 
