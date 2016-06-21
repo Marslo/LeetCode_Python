@@ -2,9 +2,345 @@
 My Leetcode source code. Python version.
 
 
-## Pythonic
+## Hidden Features [Got from here](http://stackoverflow.com/questions/101268/hidden-features-of-python)
 
+
+##### In
+
+		>>> 'str' in 'string'
+		True
+		>>> 'no' in 'yes'
+		False
+		>>>
+
+##### In-place value swapping
+
+		>>> a = 10
+		>>> b = 5
+		>>> a, b
+		(10, 5)
+
+		>>> a, b = b, a
+		>>> a, b
+		(5, 10)
+
+##### Function argument unpacking
+
+		def draw_point(x, y):
+				# do some magic
+
+		point_foo = (3, 4)
+		point_bar = {'y': 3, 'x': 2}
+
+		draw_point(*point_foo)
+		draw_point(**point_bar)
+
+##### Nested list
+
+		[(i,j) for i in range(3) for j in range(i) ]
+
+--
+
+		((i,j) for i in range(4) for j in range(i) )
+
+##### Conditional Assignment
+
+		x = 3 if (y == 1) else 2
+
+--
+
+		x = 3 if (y == 1) else 2 if (y == -1) else 1
+
+--
+
+		(func1 if y == 1 else func2)(arg1, arg2)
+
+--
+
+		x = (class1 if y == 1 else class2)(arg1, arg2)
+
+--
+
+		[(x, y) for x in range(4) if x % 2 == 1 for y in range(4)]
+		[(1, 0), (1, 1), (1, 2), (1, 3), (3, 0), (3, 1), (3, 2), (3, 3)]
+
+##### enumerate
+
+		>>> a = ['a', 'b', 'c', 'd', 'e']
+		>>> for index, item in enumerate(a): print index, item
+		...
+		0 a
+		1 b
+		2 c
+		3 d
+		4 e
+
+--
+
+		>>> l = ["spam", "ham", "eggs"]
+		>>> list(enumerate(l))
+		>>> [(0, "spam"), (1, "ham"), (2, "eggs")]
+		>>> list(enumerate(l, 1))
+		>>> [(1, "spam"), (2, "ham"), (3, "eggs")]
+
+##### generators objects
+
+		x = [n for n in foo if bar(n)]
+
+--
+
+		>>> n = ((a,b) for a in range(0,2) for b in range(4,6))
+		>>> for i in n:
+		...   print i
+
+		(0, 4)
+		(0, 5)
+		(1, 4)
+		(1, 5)
+
+##### constructor
+
+		>>> def g(n):
+		...     for i in range(n):
+		...             yield i **2
+		>>> t = g(5)
+		>>> t.next()
+		0
+		>>> t.next()
+		1
+		>>> t.next()
+		4
+		>>> t.next()
+		9
+		>>> t.next()
+		16
+		>>> t.next()
+		Traceback (most recent call last):
+			File "<stdin>", line 1, in <module>
+		StopIteration
+
+--
+
+		def fab(max):
+				a,b = 0,1
+				while a < max:
+						yield a
+						a, b = b, a+b
+
+		>>> for i in fab(20):
+		...     print i,",",
+		...
+		0 , 1 , 1 , 2 , 3 , 5 , 8 , 13 ,
+
+##### for...else...
+
+		for i in foo:
+				if i == 0:
+						break
+		else:
+				print("i was never 0")
+
+--
+
+		found = False
+		for i in foo:
+				if i == 0:
+						found = True
+						break
+		if not found:
+				print("i was never 0")
+
+
+##### Context managers and the "with" Statement
+
+		from __future__ import with_statement
+
+		with open('foo.txt', 'w') as f:
+				f.write('hello!')
+
+##### Exception else
+
+		try:
+			put_4000000000_volts_through_it(parrot)
+		except Voom:
+			print "'E's pining!"
+		else:
+			print "This parrot is no more!"
+		finally:
+			end_sketch()
+
+
+##### set
+
+		>>> a = set([1,2,3,4])
+		>>> b = set([3,4,5,6])
+		>>> a | b # Union
+		{1, 2, 3, 4, 5, 6}
+		>>> a & b # Intersection
+		{3, 4}
+		>>> a < b # Subset
+		False
+		>>> a - b # Difference
+		{1, 2}
+		>>> a ^ b # Symmetric Difference
+		{1, 2, 5, 6}
+
+
+##### round
+
+		>>> str(round(1234.5678, -2))
+		'1200.0'
+		>>> str(round(1234.5678, 2))
+		'1234.57'
+
+##### zip
+
+    a = [(1,2), (3,4), (5,6)]
+    zip(*a)
+    # [(1, 3, 5), (2, 4, 6)]
+
+##### dir
+
+		>>> dir("foo")
+		['__add__', '__class__', '__contains__', (snipped a bunch), 'title',
+		 'translate', 'upper', 'zfill']
+
+--
+
+		>>> help("foo".upper)
+				Help on built-in function upper:
+
+		upper(...)
+				S.upper() -> string
+
+				Return a copy of the string S converted to uppercase.
+
+##### dict's constructor
+
+		>>> dict(foo=1, bar=2)
+		{'foo': 1, 'bar': 2}
+
+##### Multi-line Strings
+
+		>>> sql = "select * from some_table \
+		where id > 10"
+		>>> print sql
+		select * from some_table where id > 10
+
+--
+
+		>>> sql = """select * from some_table
+		where id > 10"""
+		>>> print sql
+		select * from some_table where id > 10
+
+--
+
+		>>> sql = ("select * from some_table " # <-- no comma, whitespace at end
+							 "where id > 10 "
+							 "order by name")
+		>>> print sql
+		select * from some_table where id > 10 order by name
+
+##### Convenient Web-browser controller
+
+		>>> import webbrowser
+		>>> webbrowser.open_new_tab('http://www.stackoverflow.com')
+
+##### Built-in http server
+
+		python -m SimpleHTTPServer 8000
+
+##### An interpreter within the interpreter
+
+		$ python
+		Python 2.5.1 (r251:54863, Jan 17 2008, 19:35:17)
+		[GCC 4.0.1 (Apple Inc. build 5465)] on darwin
+		Type "help", "copyright", "credits" or "license" for more information.
+		>>> shared_var = "Set in main console"
+		>>> import code
+		>>> ic = code.InteractiveConsole({ 'shared_var': shared_var })
+		>>> try:
+		...     ic.interact("My custom console banner!")
+		... except SystemExit, e:
+		...     print "Got SystemExit!"
+		...
+		My custom console banner!
+		>>> shared_var
+		'Set in main console'
+		>>> shared_var = "Set in sub-console"
+		>>> import sys
+		>>> sys.exit()
+		Got SystemExit!
+		>>> shared_var
+		'Set in main console'
+
+##### Generate List
+
+		>>> from functools import partial
+		>>> bound_func = partial(range, 0, 10)
+		>>> bound_func()
+		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		>>> bound_func(2)
+		[0, 2, 4, 6, 8]
+
+##### pretty print
+
+		>>> import pprint
+		>>> stuff = sys.path[:]
+		>>> stuff.insert(0, stuff)
+		>>> pprint.pprint(stuff)
+		[<Recursion on list with id=869440>,
+		 '',
+		 '/usr/local/lib/python1.5',
+		 '/usr/local/lib/python1.5/test',
+		 '/usr/local/lib/python1.5/sunos5',
+		 '/usr/local/lib/python1.5/sharedmodules',
+		 '/usr/local/lib/python1.5/tkinter']
+
+##### Creating new types
+
+		>>> NewType = type("NewType", (object,), {"x": "hello"})
+		>>> n = NewType()
+		>>> n.x
+		"hello"
+
+--
+
+		>>> class NewType(object):
+		>>>     x = "hello"
+		>>> n = NewType()
+		>>> n.x
+		"hello"
+
+##### Be careful with mutable default arguments
+
+		>>> def foo(x=[]):
+		...     x.append(1)
+		...     print x
+		...
+		>>> foo()
+		[1]
+		>>> foo()
+		[1, 1]
+		>>> foo()
+		[1, 1, 1]
+
+--
+
+		>>> def foo(x=None):
+		...     if x is None:
+		...         x = []
+		...     x.append(1)
+		...     print x
+		>>> foo()
+		[1]
+		>>> foo()
+		[1]
+
+## Pythonic
 ### Got from [here](https://www.quora.com/What-are-some-examples-of-beautiful-Pythonic-code)
+
 --
 
 		def unzip(tuples):
@@ -164,7 +500,7 @@ My Leetcode source code. Python version.
 			'd', 'e', 'f',
 			)
 
-OR
+--
 
 	my_list = [
 			1, 2, 3,
@@ -300,7 +636,6 @@ Module level "dunder" names with two leading and two trailing underscores, such 
     ham[lower+offset : upper+offset]
     ham[: upper_fn(x) : setp_fn(x)], ham[:: setp_fn(x)]
     ham[lower + offset : upper + offset]
-
 --
 
 ##### No:
