@@ -996,6 +996,8 @@ equal to
 		>>> os
 		<module 'os' from '/usr/lib/python2.5/os.pyc'>
 
+------
+
 ### Others
 
 ##### not hidden but still nice
