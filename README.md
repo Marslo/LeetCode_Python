@@ -37,6 +37,11 @@ My Leetcode source code. Python version.
 		>>> a, b
 		(5, 10)
 
+##### Sum
+
+		from operator import add
+		print reduce(add, [1,2,3,4,5,6])
+
 ------
 
 ### String:
@@ -71,7 +76,7 @@ My Leetcode source code. Python version.
 		False
 		>>>
 
-#####
+##### Join
 
 		''.join(list_of_strings)
 
@@ -119,11 +124,22 @@ My Leetcode source code. Python version.
     >>> a
     [9, 3, 5, 7, 1]
 
-##### dict's constructor
+##### Reversed
 
-		>>> dict(foo=1, bar=2)
-		{'foo': 1, 'bar': 2}
+		for i in reversed([1, 2, 3]):
+				print(i)
 
+##### Backslashes
+
+		>>> print repr(r"aaa\"bbb")
+		'aaa\\"bbb'
+
+--
+
+		>>> print repr(r"C:\")
+		SyntaxError: EOL while scanning string literal
+		>>> print repr(r"C:\"")
+		'C:\\"'
 
 ------
 
@@ -143,6 +159,14 @@ My Leetcode source code. Python version.
     >>> g(1, 2, 3, thing='stuff')
     (1, 'stuff')
 
+--
+
+		def foo(a, b, c):
+						print a, b, c
+
+		bar = (3, 14, 15)
+		foo(*bar)
+
 ##### Function argument unpacking
 
 		def draw_point(x, y):
@@ -156,7 +180,7 @@ My Leetcode source code. Python version.
 
 ------
 
-### Mulit-operation combain
+### Conditional Assignment
 
 ##### Ternary operator
 
@@ -179,7 +203,31 @@ My Leetcode source code. Python version.
     >>> True and [] or 'spam'
     'spam'
 
-##### Conditional Assignment
+--
+
+		In [18]: a = True
+
+		In [19]: a and 3 or 4
+		Out[19]: 3
+
+		In [20]: a = False
+
+		In [21]: a and 3 or 4
+		Out[21]: 4
+
+--
+
+		>>> (1 and [foo()] or [bar()])[0]
+		foo
+		0
+
+--
+
+		>>> foo() if True or bar()
+		foo
+		0
+
+##### Conditional
 
 		x = 3 if (y == 1) else 2
 
@@ -200,11 +248,36 @@ My Leetcode source code. Python version.
 		[(x, y) for x in range(4) if x % 2 == 1 for y in range(4)]
 		[(1, 0), (1, 1), (1, 2), (1, 3), (3, 0), (3, 1), (3, 2), (3, 3)]
 
+--
 
+		x = 3 if (y == 1) else 2				is equvalent to 				x = y == 1 and 3 or 2
+		x = 0 if True else 1 						is equvalent to 				x = True and 0 or 1
+
+--
+
+		foo = [x for x in xrange(10) if x % 2 == 0]
+
+equal to
+
+		foo = []
+		for x in xrange(10):
+			if x % 2 == 0:
+				 foo.append(x)
+
+##### Dict Comprehensions ([wiki](https://en.wikipedia.org/wiki/List_comprehension#Dictionary_comprehension), [manual](https://docs.python.org/dev/reference/expressions.html?highlight=comprehensions#dictionary-displays))
+
+		>>> {i: i**2 for i in range(5)}
+		{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+
+##### Set comprehensions ([wiki](https://en.wikipedia.org/wiki/List_comprehension#Set_comprehension), [manual](https://docs.python.org/dev/reference/expressions.html?highlight=comprehensions#set-displays))
+
+		>>> {i**2 for i in range(5)}
+		set([0, 1, 4, 16, 9])
 
 ------
 
-### List
+### List & Dics
 
 ##### zip
 
@@ -222,6 +295,31 @@ My Leetcode source code. Python version.
 		>>> dict(zip(names, ages))
 		{'Alice': 36, 'Bob': 23, 'Marie': 27}
 
+--
+
+		>>> t1 = (0,1,2,3)
+		>>> t2 = (7,6,5,4)
+		>>> [t1,t2] == zip(*zip(t1,t2))
+		True
+
+--
+
+		In [15]: t1 = (1, 2, 3)
+		In [16]: t2 = (4, 5, 6)
+		In [17]: dict (zip(t1,t2))
+		Out[17]: {1: 4, 2: 5, 3: 6}
+
+--
+
+		>>> l=[(1,2),(3,4)]
+		>>> [a+b for a,b in l ]
+		[3,7]
+
+##### List & Sum
+
+		>>> l = [[1, 2, 3], [4, 5], [6], [7, 8, 9]]
+		>>> sum(l, [])
+		[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ##### Nested list
 
@@ -251,6 +349,66 @@ My Leetcode source code. Python version.
 		>>> list(enumerate(l, 1))
 		>>> [(1, "spam"), (2, "ham"), (3, "eggs")]
 
+##### Generate List
+
+		>>> from functools import partial
+		>>> bound_func = partial(range, 0, 10)
+		>>> bound_func()
+		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		>>> bound_func(2)
+		[0, 2, 4, 6, 8]
+
+
+##### dict's constructor
+
+		>>> dict(foo=1, bar=2)
+		{'foo': 1, 'bar': 2}
+
+--
+
+		>>> a = {}
+		>>> b = a.setdefault('foo', 'bar')
+		>>> a
+		{'foo': 'bar'}
+		>>> b
+		'bar
+
+##### dict's get
+
+		t = {1: 'a'}
+		>>> test[2]
+
+		Traceback (most recent call last):
+			File "<pyshell#158>", line 1, in <module>
+				test[2]
+		KeyError: 2
+		>>> test.get(2)
+		>>> test.get(1)
+		'a'
+		>>> test.get(2) == None
+		True
+		>>> test.get(2, 'some') == 'some'
+		True
+
+##### Copy List
+
+		>>> x = [1,2,3]
+		>>> y = x[:]
+		>>> y.pop()
+		3
+		>>> y
+		[1, 2]
+		>>> x
+		[1, 2, 3]
+
+##### Replace list
+
+		>>> x = [1,2,3]
+		>>> y = x
+		>>> y[:] = [4,5,6]
+		>>> x
+		[4, 5, 6]
+
 ##### generators objects
 
 		x = [n for n in foo if bar(n)]
@@ -265,6 +423,10 @@ My Leetcode source code. Python version.
 		(0, 5)
 		(1, 4)
 		(1, 5)
+
+------
+
+### Generator & Iteration
 
 ##### iteration ([itertools](http://docs.python.org/library/itertools.html)) & constructor (yield)
 
@@ -325,15 +487,13 @@ My Leetcode source code. Python version.
 		>>> list(chain(*l))
 		[1, 2, 3, 4]
 
-##### Generate List
+--
 
-		>>> from functools import partial
-		>>> bound_func = partial(range, 0, 10)
-		>>> bound_func()
-		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-		>>> bound_func(2)
-		[0, 2, 4, 6, 8]
-
+		def create_printers(n):
+				for i in xrange(n):
+						def printer(i=i): # Doesn't work without the i=i
+								print i
+						yield printer
 
 
 ------
@@ -444,9 +604,35 @@ My Leetcode source code. Python version.
 		 '/usr/local/lib/python1.5/sharedmodules',
 		 '/usr/local/lib/python1.5/tkinter']
 
+--
+
+		from __future__ import print_function 
+
+		mylist = ['foo', 'bar', 'some other value', 1,2,3,4]  
+		print(*mylist)
+
 ------
 
 ### Class & Module
+
+##### Bash
+
+		python -c"import os; print(os.getcwd());"
+
+##### Assertion
+
+		>>> try:
+		...     assert []
+		... except AssertionError:
+		...     print "This list should not be empty"
+		This list should not be empty
+
+##### Imports
+
+		try:
+				import json
+		except ImportError:
+				import simplejson as json
 
 ##### Creating new types
 
@@ -494,6 +680,14 @@ My Leetcode source code. Python version.
 		# Our old imported module is still available.
 		>>> os
 		<module 'os' from '/usr/lib/python2.5/os.pyc'>
+
+### Others
+
+##### not hidden but still nice
+
+		import os.path as op
+
+		root_dir = op.abspath(op.join(op.dirname(__file__), ".."))
 
 ##### Be careful with mutable default arguments
 
