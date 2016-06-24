@@ -1,8 +1,9 @@
 # =============================================================================
 #   FileName: 2.AddTwoNumbers.py
 #    Example:
-#       Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
-#       Output: 7 -> 0 -> 8
+#      Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+#      Output: 7 -> 0 -> 8
+#   KeyPoint: ListNode isn't the regular data structure we've seen before. Debug and write code should be run in LeetCode editor.
 #     Author: Marslo
 #      Email: marslo.jiao@gmail.com
 #    Created: 2016-06-21 18:03:20
@@ -35,9 +36,19 @@ class Solution(object):
         """
         x = 0
         idx = None
-        while l1 and l2:
-            res = (x + l1.val + l2.val) % 10
-            x = (x + l1.val + l2.val) / 10
+        while l1 or l2:
+            if l1:
+                v1 = l1.val
+            else:
+                v1 = 0
+
+            if l2:
+                v2 = l2.val
+            else:
+                v2 = 0
+
+            res = (x + v1 + v2) % 10
+            x = (x + v1 + v2) / 10
 
             if not idx:
                 idx = ListNode(res)
@@ -46,19 +57,10 @@ class Solution(object):
                 n.next = ListNode(res)
                 n = n.next
 
-            l1 = l1.next
-            l2 = l2.next
-
-        if l1:
-            l = l1
-        else:
-            l = l2
-
-        while l:
-            n.next = ListNode((x + l.val) % 10)
-            n = n.next
-            x = (x + l.val) / 10
-            l = l.next
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
 
         while x != 0:
             n.next = ListNode(x % 10)
