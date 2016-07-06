@@ -17,17 +17,18 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        longest = 0
-        sub = []
+        flag = 0
+        length = 0
+        sub = [0 for i in range(256)]
         for k, v in enumerate(s):
-            if v not in sub:
-                sub.append(v)
-            else:
-                longest = max(longest, len(sub))
-                sub = sub[sub.index(v)+1:len(sub):1]
-                sub.append(v)
-            longest = max(longest, len(sub))
-        return longest
+            # print (' k -> ' + str(k) + ', v -> ' + v + ', ASCII -> ' + str(ord(v)) + ' ').center(50, '=')
+            # print 'flag = max(sub[ord(v)], flag): max(', sub[ord(v)], ',', flag, ') =', max(sub[ord(v)], flag)
+            flag = max(sub[ord(v)], flag)
+            # print 'length = max(k + 1 - flag, length) = max(', k, '+ 1 -', flag, ',', length, ') =', max(k + 1 - flag, length)
+            length = max(k + 1 - flag, length)
+            sub[ord(v)] = k + 1
+            # print 'sub:', sub
+        return length
 
 
 l1 = 'abcabcab'
@@ -54,16 +55,16 @@ r5 = 3
 
 s = Solution()
 
-# print ['1 succeed' if r1 == s.lengthOfLongestSubstring(l1) else '1 failed'][0]
-# print '='*100
-# print ['2 succeed' if r2 == s.lengthOfLongestSubstring(l2) else '2 failed'][0]
-# print '='*100
-# print ['3 succeed' if r3 == s.lengthOfLongestSubstring(l3) else '3 failed'][0]
-# print '='*100
-# print ['4 succeed' if r4 == s.lengthOfLongestSubstring(l4) else '4 failed'][0]
-# print '='*100
+print ['1 succeed' if r1 == s.lengthOfLongestSubstring(l1) else '1 failed'][0]
+print '='*100
+print ['2 succeed' if r2 == s.lengthOfLongestSubstring(l2) else '2 failed'][0]
+print '='*100
+print ['3 succeed' if r3 == s.lengthOfLongestSubstring(l3) else '3 failed'][0]
+print '='*100
+print ['4 succeed' if r4 == s.lengthOfLongestSubstring(l4) else '4 failed'][0]
+print '='*100
 print ['5 succeed' if r5 == s.lengthOfLongestSubstring(l5) else '5 failed'][0]
-# print '='*100
-# print ['6 succeed' if r6 == s.lengthOfLongestSubstring(l6) else '6 failed'][0]
-# print '='*100
-# print ['7 succeed' if r7 == s.lengthOfLongestSubstring(l7) else '7 failed'][0]
+print '='*100
+print ['6 succeed' if r6 == s.lengthOfLongestSubstring(l6) else '6 failed'][0]
+print '='*100
+print ['7 succeed' if r7 == s.lengthOfLongestSubstring(l7) else '7 failed'][0]
