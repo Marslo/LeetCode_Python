@@ -18,3 +18,15 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
+        # temp = []
+        for i, j in zip(nums1, nums2):
+            print i, '->', j
+
+n11 = [1, 3, 5, 7]
+n12 = [2, 4, 6]
+r1 = 4
+
+s = Solution()
+
+print '='*100
+print ['1 succeed' if r1 == s.findMedianSortedArrays(n11, n12) else '1 failed']

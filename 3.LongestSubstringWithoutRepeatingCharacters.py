@@ -7,27 +7,31 @@
 #      Email: marslo.jiao@gmail.com
 #    Created: 2016-06-21 18:03:20
 #    Version: 0.0.1
-# LastChange: 2016-07-05 18:26:18
+# LastChange: 2016-07-07 11:30:59
 # =============================================================================
+
+# Problem-solving ideas:
+
+    # IF string == ab1347ucabcab,
+                 # |       |
+         # index: [a]     [b]
+    # then the length of Non-Repeating Character Substring (NRCS) should be:
+        # new-length = a - b
+        # maximum-length = max(old-length, new-length)
+
+    # How to get the previous character's index?
+        # Using a list (sub) save the index of character. In Sub, the index of character is the ASCII of the character. For example,'a' will be saved in sub[97], and the value of sub[97] is the index of 'a' in string.
 
 
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
         flag = 0
         length = 0
         sub = [0 for i in range(256)]
         for k, v in enumerate(s):
-            # print (' k -> ' + str(k) + ', v -> ' + v + ', ASCII -> ' + str(ord(v)) + ' ').center(50, '=')
-            # print 'flag = max(sub[ord(v)], flag): max(', sub[ord(v)], ',', flag, ') =', max(sub[ord(v)], flag)
             flag = max(sub[ord(v)], flag)
-            # print 'length = max(k + 1 - flag, length) = max(', k, '+ 1 -', flag, ',', length, ') =', max(k + 1 - flag, length)
             length = max(k + 1 - flag, length)
             sub[ord(v)] = k + 1
-            # print 'sub:', sub
         return length
 
 
