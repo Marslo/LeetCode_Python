@@ -1505,3 +1505,37 @@ Module level "dunder" names with two leading and two trailing underscores, such 
 ##### Worse:
 
 		if greeting is True:
+
+
+## PEP8 Error/Warning Code
+* E111 indentation is not a multiple of four
+* E114 indentation is not a multiple of four (comment)
+* E124 closing bracket does not match visual indentation
+* E127 continuation line over-indented for visual indent
+* E128 continuation line under-indented for visual indent
+* E201 whitespace after '['
+* E202 whitespace before ')'
+* E203 whitespace before ','
+* E211 whitespace before '('
+* E221 multiple spaces before operator
+* E222 multiple spaces after operator
+* E225 missing whitespace around operator
+* E231 missing whitespace after ','
+* E251 unexpected spaces around keyword / parameter equals
+* E261 at least two spaces before inline comment
+* E262 inline comment should start with '# '
+* E265 block comment should start with '# '
+* E266 too many leading '#' for block comment
+* E301 expected 1 blank line, found 0
+* E302 expected 2 blank lines, found 1
+* E303 too many blank lines (3)
+* E401 multiple imports on one line
+* E402 module level import not at top of file
+* E501 line too long (82 > 79 characters)
+* E712 comparison to True should be 'if cond is not True:' or 'if not cond:'
+* E713 test for membership should be 'not in'
+* E731 do not assign a lambda expression, use a def
+* W291 trailing whitespace
+* W293 blank line contains whitespace
+* W601 .has_key() is deprecated, use 'in'
+* W602 deprecated form of raising exception
