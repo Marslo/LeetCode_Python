@@ -1,6 +1,13 @@
 # leetcode_python
 My Leetcode source code. Python version.
 
+## Content
+* [Pythonic](#Pythonic)
+* [Hidden Features](#hidden-features-got-from-here)
+* [PEP8 -- Style Guide for Python Code](#pep8----style-guide-for-python-code)
+* [PEP8 Error/Warning Code](#pep8-errorwarning-code)
+
+
 --------
 
 ## Pythonic
