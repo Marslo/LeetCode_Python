@@ -2,7 +2,23 @@
 My Leetcode source code. Python version.
 
 ## Content
-* [Pythonic](#Pythonic)
+* [Pythonic](#pythonic)
+    * [zip/unzip](#zipunzip)
+    * [in](#in)
+    * [dict & conter](#dict--counter)
+    * [enumerate](#enumerate)
+    * [**args & **kwargs(#args--kwargs)
+    * [itertools](#itertools)
+    * [one-line python code](#one-line-python-code)
+    * [slice](#slice)
+    * [Chain Compare](#chain-compare)
+    * [Boolean](#boolean)
+    * [Join in list](#join-in-list)
+    * [Sum & Max & Min & Time](#sum--max--min--time)
+    * [List Comprehensions](#list-comprehensions)
+    * [if...else...](#ifelse)
+    * [Ternary Operator](#ternary-operator)
+    * [dict & zip](#dict--zip)
 * [Hidden Features](#hidden-features-got-from-here)
 * [PEP8 -- Style Guide for Python Code](#pep8----style-guide-for-python-code)
 * [PEP8 Error/Warning Code](#pep8-errorwarning-code)
@@ -45,6 +61,29 @@ My Leetcode source code. Python version.
 
 		for index, item in enumerate(x):
 				print(index, item)
+
+--
+P:
+
+		array = [1, 2, 3, 4, 5]
+
+		for i, e in enumerate(array,0):
+		    print i, e
+		#0 1
+		#1 2
+		#2 3
+		#3 4
+		#4 5
+
+NP:
+
+		for i in xrange(len(array)):
+		    print i, array[i]
+		#0 1
+		#1 2
+		#2 3
+		#3 4
+		#4 5
 
 --
 ##### import local module
@@ -277,31 +316,6 @@ NP:
 		else:
 		    b = 1
 		# b = 2
-
---
-
-##### Enumerate
-P:
-
-		array = [1, 2, 3, 4, 5]
-
-		for i, e in enumerate(array,0):
-		    print i, e
-		#0 1
-		#1 2
-		#2 3
-		#3 4
-		#4 5
-
-NP:
-
-		for i in xrange(len(array)):
-		    print i, array[i]
-		#0 1
-		#1 2
-		#2 3
-		#3 4
-		#4 5
 
 --
 
