@@ -2,7 +2,7 @@
 My Leetcode source code. Python version.
 
 ## Content
-#### [Pythonic](#pythonic)
+* **[Pythonic](#pythonic)**
     * [zip/unzip](#zipunzip)
     * [in](#in)
     * [dict & conter](#dict--counter)
@@ -19,7 +19,7 @@ My Leetcode source code. Python version.
     * [if...else...](#ifelse)
     * [Ternary Operator](#ternary-operator)
     * [dict & zip](#dict--zip)
-#### [Hidden Features](#hidden-features-got-from-here)
+* **[Hidden Features](#hidden-features-got-from-here)**
     * [Numbers](#numbers)
         * [round](#round)
         * [Integer base](#integer-base)
@@ -74,7 +74,7 @@ My Leetcode source code. Python version.
     * [Others](#others)
         * [not hidden but still nice](#not-hidden-but-still-nice)
         * [Be careful with mutable default arguments](#be-careful-with-mutable-default-arguments)
-#### [PEP8 -- Style Guide for Python Code](#pep8----style-guide-for-python-code)
+* **[PEP8 -- Style Guide for Python Code](#pep8----style-guide-for-python-code)**
     * [Indentation](#indentation)
     * [Optional](#optional)
     * [If-statement](#if-statemant)
@@ -91,7 +91,7 @@ My Leetcode source code. Python version.
     * [Other Recommendations](#other-recommendations)
     * [Documentation Strings](#documentation-strings)
     * [Programming Recommendations](#programming-recommendations)
-#### [PEP8 Error/Warning Code](#pep8-errorwarning-code)
+* **[PEP8 Error/Warning Code](#pep8-errorwarning-code)**
     * [E1 Indentation](#e1--indentation)
     * [E2 Whitespace](#e2--whitespace)
     * [E3 Blank line](#e3--blank-line)
