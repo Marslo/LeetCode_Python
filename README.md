@@ -7,7 +7,7 @@ My Leetcode source code. Python version.
     * [in](#in)
     * [dict & conter](#dict--counter)
     * [enumerate](#enumerate)
-    * [**args & **kwargs(#args--kwargs)
+    * [**args & **kwargs](#args--kwargs)
     * [itertools](#itertools)
     * [one-line python code](#one-line-python-code)
     * [slice](#slice)
@@ -92,11 +92,18 @@ My Leetcode source code. Python version.
     * [Documentation Strings](#documentation-strings)
     * [Programming Recommendations](#programming-recommendations)
 * [PEP8 Error/Warning Code](#pep8-errorwarning-code)
-    * []()
-    * []()
-    * []()
-    * []()
-    * []()
+    * [E1 Indentation](#e1--indentation)
+    * [E2 Whitespace](#e2--whitespace)
+    * [E3 Blank line](#e3--blank-line)
+    * [E4 Import](#e4--import)
+    * [E5 Line length](#e5--line-length)
+    * [E7 Statement](#e7--statement)
+    * [E9 Runtime](#e9--runtime)
+    * [W1 Indentation Warning](#w1--indentation-warning)
+    * [W2 Whitespace Warning](#w2--whitespace-warning)
+    * [W3 Blank Line Warning](#w3--blank-line-warning)
+    * [W5 Line Break Warning](#w5--line-break-warning)
+    * [W6 Deprecation Warning](#w6--deprecation-warning)
 
 
 --------
@@ -1604,7 +1611,7 @@ Module level "dunder" names with two leading and two trailing underscores, such 
 
 
 ## [PEP8 Error/Warning Code](http://pep8.readthedocs.io/en/release-1.7.x/intro.html#error-codes)
-### E1	Indentation
+#### E1	Indentation
   * E101	indentation contains mixed spaces and tabs
   * E111	indentation is not a multiple of four
   * E112	expected an indented block
@@ -1624,7 +1631,7 @@ Module level "dunder" names with two leading and two trailing underscores, such 
   * E131 (^)	continuation line unaligned for hanging indent
   * E133 (*)	closing bracket is missing indentation
 
-### E2	Whitespace
+#### E2	Whitespace
   * E201	whitespace after ‘(‘
   * E202	whitespace before ‘)’
   * E203	whitespace before ‘:’
@@ -1650,21 +1657,21 @@ Module level "dunder" names with two leading and two trailing underscores, such 
   * E273	tab after keyword
   * E274	tab before keyword
 
-### E3	Blank line
+#### E3	Blank line
   * E301	expected 1 blank line, found 0
   * E302	expected 2 blank lines, found 0
   * E303	too many blank lines (3)
   * E304	blank lines found after function decorator
 
-### E4	Import
+#### E4	Import
   * E401	multiple imports on one line
   * E402	module level import not at top of file
 
-### E5	Line length
+#### E5	Line length
   * E501 (^)	line too long (82 > 79 characters)
   * E502	the backslash is redundant between brackets
 
-### E7	Statement
+#### E7	Statement
   * E701	multiple statements on one line (colon)
   * E702	multiple statements on one line (semicolon)
   * E703	statement ends with a semicolon
@@ -1676,25 +1683,25 @@ Module level "dunder" names with two leading and two trailing underscores, such 
   * E721 (^)	do not compare types, use ‘isinstance()’
   * E731	do not assign a lambda expression, use a def
 
-### E9	Runtime
+#### E9	Runtime
   * E901	SyntaxError or IndentationError
   * E902	IOError
 
-### W1	Indentation warning
+#### W1	Indentation warning
   * W191	indentation contains tabs
 
-### W2	Whitespace warning
+#### W2	Whitespace warning
   * W291	trailing whitespace
   * W292	no newline at end of file
   * W293	blank line contains whitespace
 
-### W3	Blank line warning
+#### W3	Blank line warning
   * W391	blank line at end of file
 
-### W5	Line break warning
+#### W5	Line break warning
   * W503	line break occurred before a binary operator
 
-### W6	Deprecation warning
+#### W6	Deprecation warning
   * W601	.has_key() is deprecated, use ‘in’
   * W602	deprecated form of raising exception
   * W603	‘<>’ is deprecated, use ‘!=’
